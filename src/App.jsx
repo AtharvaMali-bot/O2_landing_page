@@ -1,163 +1,229 @@
-import { useEffect } from 'react';
-import { motion } from 'framer-motion';
-import './index.css';
+import { motion } from "framer-motion";
 
-function App() {
+export default function App() {
+  const o2Verticals = [
+    {
+      name: "O2 Purodhyãan",
+      content: [
+        "Operations: Mass Bamboo Plantation",
+        "70%-90% Man-Made Forest",
+        "70-30 Sutra",
+        "Farming: Bagayat & Contract Farming",
+        "Vegetables, Fruits, Herbs & Medicinal Plants",
+        "Oxygen Generating Plants",
+        "Community Connect: Kisan Pathshala",
+        "घर से अंतर्राष्ट्रीय स्तर तक",
+      ],
+    },
+    {
+      name: "O2 Self & Help",
+      content: [
+        "Our projects: Green cover developed in hilly terrain in Anjad, MP",
+        "Green cover developed in hilly terrain of Borlai, MP",
+        "Adopted District Daang, Gujarat",
+        "100 FPOs created in Gujarat along with State Govt",
+        "Sustainability of Tribes through Project on IFR / CFR, Distt Nandurbar, MH",
+        "Free Education on Agriculture: Kisan Pathshala",
+      ],
+    },
+    {
+      name: "O2 Udhyãm",
+      content: [
+        "Next Generation Green Energy",
+        "Consultancy / M&O for various CBG Plants",
+        "Supply of Raw Material to various Industries",
+        "Value addition in the bi-products",
+        "Unique Product Lines",
+        "Raw Material Source projects: Terragrn Private Limited, South Africa (Bamboo Chips)",
+        "JMG Corporation, Raw material supply for CBG plants",
+        "M&O for CBG Plant by HPCL at Pathmeda (in process)",
+        "Raw material supply to Reliance for their upcoming CBG plants in Gujarat State",
+        "Value addition of Liquid Fertilisers, Surat CBG Plant",
+      ],
+    },
+    {
+      name: "O2 Hãat",
+      content: [
+        "Our E-Commerce Platform",
+        "Range of Unique Products for domestic & International market",
+        "Traceability through Block Chain Technology",
+        "Product Lines & Services",
+      ],
+    },
+    {
+      name: "(Advekam Bodhi Chetanam) ABC Retreãt Agro / Eco Tourism",
+      content: [
+        "Resort",
+        "Bamboo Cottages",
+        "Mud / Tree Houses",
+        "Restaurant",
+        "Ayurveda Centre",
+        "Spiritual Park",
+        "Farm to Plate",
+        "Krishi Teertha",
+        "Entertainment Zone",
+        "Adventure Zone",
+        "Game Zone",
+        "Suspense Zone",
+        "Retail Zone",
+        "Gurukulum",
+        "Prani Sanrakshan",
+        "Event Management",
+      ],
+    },
+    {
+      name: "O2 Mantrãa",
+      content: [
+        "Expert Consultancy with end to end Solutions in Farming",
+        "Residue Free Farming Concept",
+        "70 : 30 Sutra",
+        "Smart Farming",
+        "Soil Investigation",
+        "Banana & Bamboo Industry (Farmers & Exporter)",
+        "Carbon, Water & Soil Credits offset",
+        "S2E2",
+      ],
+    },
+    {
+      name: "O2 Dãan",
+      content: [
+        "Community Support Initiatives",
+        "Donation Programs for Sustainable Agriculture",
+        "Support for Tribal Education and Livelihood",
+        "Partnerships for Green Initiatives",
+      ],
+    },
+  ];
+
   return (
-    <div className="min-h-screen bg-beige-100 font-sans">
-      {/* Header */}
-      <header className="bg-brown-800 text-white py-12 sticky top-0 z-10 shadow-lg">
-        <div className="container mx-auto text-center px-4">
-          <h1 className="text-5xl font-extrabold text-beige-100 drop-shadow-lg">O2 Park</h1>
-          <p className="text-2xl font-semibold text-beige-200 mt-2">Sustainable Living</p>
-        </div>
+    <div
+      style={{
+        minHeight: "100vh",
+        backgroundImage: 'url("/src/assets/o2-park-background.jpg")',
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundAttachment: "fixed",
+        position: "relative",
+      }}
+    >
+      {/* Header with O2 Title and Background Image */}
+      <header className="bg-cover bg-center h-64 flex items-center justify-center relative text-center">
+        <div className="absolute inset-0 bg-brown-900 bg-opacity-60"></div>
+        <div className="absolute inset-0 backdrop-blur-md bg-transparent"></div>
+        <motion.div
+          initial={{ opacity: 0, y: 150 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
+          className="relative z-10 text-white text-8xl font-extrabold drop-shadow-2xl"
+        >
+          <span className="font-bold">O2</span> PARK
+          <p className="font-bold">Sustainable Living</p>
+        </motion.div>
       </header>
 
-      {/* Home Section */}
-      <section id="home" className="h-screen flex items-center justify-center bg-cover bg-center relative" style={{ backgroundImage: 'url(/src/assets/o2-park-background.jpg)' }}>
-        <div className="absolute inset-0 bg-brown-900 bg-opacity-60"></div> {/* Earthy overlay */}
-        <div className="absolute inset-0 backdrop-blur-md bg-transparent"></div> {/* Blur effect with fallback */}
-        <motion.div
-        initial={{ opacity: 0, y: 150 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.5, ease: "easeOut" }}
-        className="text-center relative z-10 px-4"
-        >
-
-          <h2 className="text-6xl font-extrabold text-beige-100 drop-shadow-2xl mb-12">O2 Park: Sustainable Living</h2>
-          <p className="text-2xl font-semibold text-beige-200 drop-shadow-lg mb-16">Revolutionizing agriculture with nature</p>
-          <motion.a
-            href="https://calendly.com/adhirajmali17/o2-exploration-call"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 2.1 }}
-            whileTap={{ scale: 0.9 }}
-            className="inline-block px-6 py-3 bg-brown-600 text-beige-100 font-bold rounded-full hover:bg-brown-700"
-          >
-            Book Now
-          </motion.a>
-        </motion.div>
-      </section>
-
-      {/* About Section */}
-      <section id="about" className="py-16 bg-beige-200">
-        <div className="container mx-auto px-4">
-          <motion.h2
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            className="text-4xl font-bold text-brown-800 text-center mb-8"
-          >
-            Who We Are
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-lg font-medium text-brown-700 text-center max-w-3xl mx-auto"
-          >
-            O2 Park is a collective of learners, teachers, and revolutionists dedicated to agricultural innovation and sustainable smart farming. Our mission is to create a self-sustainable environment and economy through initiatives like bamboo plantations, residue-free farming, and eco-tourism.
-          </motion.p>
-        </div>
-      </section>
-
-      {/* Projects Section */}
-      <section id="projects" className="py-16 bg-beige-300">
-        <div className="container mx-auto px-4">
-          <motion.h2
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            className="text-4xl font-bold text-brown-800 text-center mb-8"
-          >
-            Our Projects
-          </motion.h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              { title: 'Bamboo Plantation', desc: 'Mass bamboo plantation in Nandurbar and partnerships with MH Govt.' },
-              { title: 'Banana Farming', desc: '100 acres in Rajasthan, 25 acres in Telangana, and 110 acres in Odisha.' },
-              { title: 'Eco-Tourism', desc: 'ABC Retreat in Morbi, Jaipur, and Pathmeda for agro and eco-tourism.' },
-            ].map((project, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.2 }}
-                className="bg-beige-100 p-6 rounded-lg shadow-lg"
-              >
-                <h3 className="text-xl font-bold text-brown-600">{project.title}</h3>
-                <p className="mt-2 text-brown-700 font-medium">{project.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Vision Section */}
-      <section id="vision" className="py-16 bg-beige-200">
-        <div className="container mx-auto px-4 text-center">
-          <motion.h2
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            className="text-4xl font-bold text-brown-800 mb-8"
-          >
-            Our Vision
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-lg font-medium text-brown-700 max-w-3xl mx-auto"
-          >
-            To create a self-sustainable environment and economy (S2E2 Model) by expanding agro and eco-tourism globally, promoting residue-free farming, and fostering job opportunities through innovative agricultural practices.
-          </motion.p>
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section id="contact" className="py-16 bg-brown-800 text-beige-100">
-        <div className="container mx-auto px-4 text-center">
-          <motion.h2
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            className="text-4xl font-bold mb-8"
-          >
-            Contact Us
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-lg font-medium mb-4"
-          >
-            O2 Park & Ventures Private Limited<br />
-            Talun, Barwani, Madhya Pradesh 451551, India<br />
-            Phone: +91 9081039222, +91 8277738222<br />
-            Email: o2myadda@gmail.com<br />
-            Website: o2myadda.com<br />
-            Last Updated: 03:59 PM IST, July 12, 2025
-          </motion.p>
-          <motion.a
-            href="https://calendly.com/adhirajmali17/o2-exploration-call"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            className="mt-6 px-6 py-3 bg-brown-600 text-beige-100 font-bold rounded-full hover:bg-brown-700"
-          >
-            Get in Touch
-          </motion.a>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-brown-900 text-beige-100 py-4 text-center">
-        <p className="text-lg font-medium">© 2025 O2 Park & Ventures Private Limited. All rights reserved.</p>
-      </footer>
+      {/* Card Section */}
+      <div style={container}>
+        {o2Verticals.map((vertical, i) => (
+          <Card
+            i={i}
+            name={vertical.name}
+            content={vertical.content}
+            key={vertical.name}
+          />
+        ))}
+      </div>
     </div>
   );
 }
 
-export default App;
+function Card({ name, content, i }) {
+  const background = `linear-gradient(306deg, ${hue(340 - i * 30)}, ${hue(10 + i * 30)})`;
+
+  return (
+    <motion.div
+      className={`card-container-${i}`}
+      style={cardContainer}
+      initial="offscreen"
+      whileInView="onscreen"
+      viewport={{ amount: 0.8 }}
+    >
+      <div style={{ ...splash, background }} />
+      <motion.div
+        style={card}
+        variants={cardVariants}
+        className="card"
+      >
+        <h3 className="text-2xl font-bold text-brown-800 mb-2">{name}</h3>
+        <ul className="text-brown-700 list-disc list-inside">
+          {content.map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
+        </ul>
+      </motion.div>
+    </motion.div>
+  );
+}
+
+const cardVariants = {
+  offscreen: {
+    y: 300,
+  },
+  onscreen: {
+    y: 50,
+    rotate: -10,
+    transition: {
+      type: "spring",
+      bounce: 0.4,
+      duration: 0.8,
+    },
+  },
+};
+
+const hue = (h) => `hsl(${h}, 100%, 50%)`;
+
+/**
+ * ==============   Styles   ================
+ */
+
+const container = {
+  margin: "100px auto",
+  maxWidth: 800,
+  paddingBottom: 100,
+  width: "100%",
+};
+
+const cardContainer = {
+  overflow: "hidden",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  position: "relative",
+  paddingTop: 20,
+  marginBottom: -120,
+};
+
+const splash = {
+  position: "absolute",
+  top: 0,
+  left: 0,
+  right: 0,
+  bottom: 0,
+  clipPath: `path("M 0 303.5 C 0 292.454 8.995 285.101 20 283.5 L 460 219.5 C 470.085 218.033 480 228.454 480 239.5 L 500 430 C 500 441.046 491.046 450 480 450 L 20 450 C 8.954 450 0 441.046 0 430 Z")`,
+};
+
+const card = {
+  width: 350,
+  height: 450,
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+  borderRadius: 20,
+  background: "#ffffff",
+  boxShadow:
+    "0 0 1px hsl(0deg 0% 0% / 0.075), 0 0 2px hsl(0deg 0% 0% / 0.075), 0 0 4px hsl(0deg 0% 0% / 0.075), 0 0 8px hsl(0deg 0% 0% / 0.075), 0 0 16px hsl(0deg 0% 0% / 0.075)",
+  transformOrigin: "10% 60%",
+  padding: 20,
+  overflowY: "auto",
+};
