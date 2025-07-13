@@ -131,7 +131,7 @@ export default function App() {
         "Carbon, Water & Soil Credits offset",
         "S2E2",
       ],
-      calendlyLink: "https://calendly.com/your-o2-mantraa-session", // Example link
+      calendlyLink: "https://calendly.com/adhirajmali17/o2-exploration-call", // Example link
     },
     {
       name: "O2 Dãan",
