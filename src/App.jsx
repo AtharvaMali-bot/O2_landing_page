@@ -23,10 +23,16 @@ export default function App() {
     setRevealedContent(""); // Clear revealed content
   };
 
-  // Function to activate magnifier with content
+  // Function to activate magnifier with content and redirect
   const activateMagnifier = (content) => {
     setRevealedContent(content);
     setIsMagnifierActive(true);
+    if (content.startsWith("Book Session for")) {
+      // Redirect to Calendly link after a short delay to show the magnifier
+      setTimeout(() => {
+        window.location.href = "https://calendly.com/adhirajmali17/o2-exploration-call";
+      }, 500); // 500ms delay to allow magnifier to display
+    }
   };
 
   // Function to deactivate magnifier
