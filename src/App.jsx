@@ -204,6 +204,17 @@ export default function App() {
           )}
         </motion.div>
       )}
+
+      {/* Footer with Contact Info */}
+      <footer style={{ textAlign: "center", padding: "20px", background: "rgba(0, 0, 0, 0.6)", color: "white", position: "relative", bottom: 0, width: "100%" }}>
+        <p>O2 Park & Ventures Private Limited</p>
+        <p>Talun, Barwani</p>
+        <p>Madhya Pradesh 451551</p>
+        <p>India</p>
+        <p>Contact Details</p>
+        <p>9081039222</p>
+        <p>8827738222</p>
+      </footer>
     </div>
   );
 }
