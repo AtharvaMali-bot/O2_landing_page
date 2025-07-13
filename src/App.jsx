@@ -1,12 +1,12 @@
-import React, { useState } from "react"; // Import useState
 import { motion } from "framer-motion";
+import React, { useState } from "react"; // Import useState
+import o2ParkBackground from './assets/o2-park-background.jpg'; // Import the background image
 
 export default function App() {
-  // Magnifier state and handlers (NEW ADDITIONS)
+  // Magnifier state and handlers
   const [position, setPosition] = useState({ x: -100, y: -100 });
   const [isMagnifierActive, setIsMagnifierActive] = useState(false);
   const [revealedContent, setRevealedContent] = useState("");
-  const [calendlyLink, setCalendlyLink] = useState("");
 
   const handleMouseMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -21,29 +21,19 @@ export default function App() {
     setIsMagnifierActive(false);
     setPosition({ x: -100, y: -100 });
     setRevealedContent(""); // Clear revealed content
-    setCalendlyLink(""); // Clear Calendly link
   };
 
-  // Function to call when an area wants to activate the magnifier with specific content
-  const activateMagnifier = (content, link) => {
+  // Function to activate magnifier with content
+  const activateMagnifier = (content) => {
     setRevealedContent(content);
-    setCalendlyLink(link);
-    setIsMagnifierActive(true); // Ensure magnifier is active
+    setIsMagnifierActive(true);
   };
 
-  // Function to deactivate magnifier when mouse leaves a specific "hotspot"
+  // Function to deactivate magnifier
   const deactivateMagnifier = () => {
     setRevealedContent("");
-    setCalendlyLink("");
   };
 
-  const handleMagnifierClick = () => {
-    if (calendlyLink) {
-      window.open(calendlyLink, "_blank"); // Open Calendly link in new tab
-    }
-  };
-
-  // Existing o2Verticals data
   const o2Verticals = [
     {
       name: "O2 Purodhyãan",
@@ -57,7 +47,6 @@ export default function App() {
         "Community Connect: Kisan Pathshala",
         "घर से अंतर्राष्ट्रीय स्तर तक",
       ],
-      calendlyLink: "https://calendly.com/your-o2-purodhyaan-session", // Example link
     },
     {
       name: "O2 Self & Help",
@@ -69,7 +58,6 @@ export default function App() {
         "Sustainability of Tribes through Project on IFR / CFR, Distt Nandurbar, MH",
         "Free Education on Agriculture: Kisan Pathshala",
       ],
-      calendlyLink: "https://calendly.com/your-o2-self-help-session", // Example link
     },
     {
       name: "O2 Udhyãm",
@@ -85,7 +73,6 @@ export default function App() {
         "Raw material supply to Reliance for their upcoming CBG plants in Gujarat State",
         "Value addition of Liquid Fertilisers, Surat CBG Plant",
       ],
-      calendlyLink: "https://calendly.com/your-o2-udhyam-session", // Example link
     },
     {
       name: "O2 Hãat",
@@ -95,7 +82,6 @@ export default function App() {
         "Traceability through Block Chain Technology",
         "Product Lines & Services",
       ],
-      calendlyLink: "https://calendly.com/your-o2-haat-session", // Example link
     },
     {
       name: "(Advekam Bodhi Chetanam) ABC Retreãt Agro / Eco Tourism",
@@ -117,7 +103,6 @@ export default function App() {
         "Prani Sanrakshan",
         "Event Management",
       ],
-      calendlyLink: "https://calendly.com/your-abc-retreat-session", // Example link
     },
     {
       name: "O2 Mantrãa",
@@ -131,7 +116,6 @@ export default function App() {
         "Carbon, Water & Soil Credits offset",
         "S2E2",
       ],
-      calendlyLink: "https://calendly.com/adhirajmali17/o2-exploration-call", // Example link
     },
     {
       name: "O2 Dãan",
@@ -141,7 +125,6 @@ export default function App() {
         "Support for Tribal Education and Livelihood",
         "Partnerships for Green Initiatives",
       ],
-      calendlyLink: "https://calendly.com/your-o2-daan-session", // Example link
     },
   ];
 
@@ -149,14 +132,13 @@ export default function App() {
     <div
       style={{
         minHeight: "100vh",
-        backgroundImage: 'url("/src/assets/o2-park-background.jpg")',
+        backgroundImage: `url(${o2ParkBackground})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
         backgroundAttachment: "fixed",
         position: "relative",
       }}
-      // Apply mouse events to the main container
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnterMain}
       onMouseLeave={handleMouseLeaveMain}
@@ -185,21 +167,20 @@ export default function App() {
             name={vertical.name}
             content={vertical.content}
             key={vertical.name}
-            activateMagnifier={activateMagnifier} // Pass down new prop
-            deactivateMagnifier={deactivateMagnifier} // Pass down new prop
-            calendlyLink={vertical.calendlyLink} // Pass down calendly link
+            activateMagnifier={activateMagnifier}
+            deactivateMagnifier={deactivateMagnifier}
           />
         ))}
       </div>
 
-      {/* Magnifier Component (NEW ADDITION) */}
+      {/* Magnifier Component */}
       {isMagnifierActive && (
         <motion.div
-          className="absolute w-40 h-40 rounded-full overflow-hidden border-4 border-lime-300 shadow-2xl pointer-events-auto flex items-center justify-center text-center cursor-pointer z-50"
+          className="absolute w-40 h-40 rounded-full overflow-hidden border-4 border-lime-300 shadow-2xl pointer-events-auto flex items-center justify-center text-center cursor-pointer z-100"
           style={{
-            top: position.y - 80, // Center the magnifier
-            left: position.x - 80, // Center the magnifier
-            background: "rgba(0, 0, 0, 0.6)", // Darker background for visibility
+            top: position.y - 80,
+            left: position.x - 80,
+            background: "rgba(0, 0, 0, 0.6)",
             backdropFilter: "blur(8px) saturate(150%) brightness(120%)",
             WebkitBackdropFilter: "blur(8px) saturate(150%) brightness(120%)",
           }}
@@ -210,9 +191,8 @@ export default function App() {
           }}
           initial={{ scale: 0 }}
           transition={{ type: "spring", stiffness: 200, damping: 20 }}
-          onClick={handleMagnifierClick} // Make magnifier clickable
         >
-          {revealedContent && ( // Only show content if it's set
+          {revealedContent && (
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -228,11 +208,8 @@ export default function App() {
   );
 }
 
-// Card Component (MODIFIED)
-function Card({ name, content, i, activateMagnifier, deactivateMagnifier, calendlyLink }) {
-  const background = `linear-gradient(306deg, ${hue(340 - i * 30)}, ${hue(
-    10 + i * 30
-  )})`;
+function Card({ name, content, i, activateMagnifier, deactivateMagnifier }) {
+  const background = `linear-gradient(306deg, ${hue(340 - i * 30)}, ${hue(10 + i * 30)})`;
 
   return (
     <motion.div
@@ -247,8 +224,7 @@ function Card({ name, content, i, activateMagnifier, deactivateMagnifier, calend
         style={card}
         variants={cardVariants}
         className="card"
-        // Add onMouseMove, onMouseEnter, onMouseLeave to the card
-        onMouseEnter={() => activateMagnifier(`Book Session for ${name}`, calendlyLink)}
+        onMouseEnter={() => activateMagnifier(`Book Session for ${name}`)}
         onMouseLeave={deactivateMagnifier}
       >
         <h3 className="text-2xl font-bold text-brown-800 mb-2">{name}</h3>
@@ -262,7 +238,6 @@ function Card({ name, content, i, activateMagnifier, deactivateMagnifier, calend
   );
 }
 
-// Existing Framer Motion variants and styles
 const cardVariants = {
   offscreen: {
     y: 300,
