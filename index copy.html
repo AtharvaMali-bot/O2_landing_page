@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O2 Priyaddha - Complete Transformation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+            color: white;
+        }
+
+        .hero-content {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+            line-height: 1.2;
+        }
+
+        .hero-tagline {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-image {
+            flex: 1;
+            height: 80%;
+            background: #333;
+            margin-left: 2rem;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+        }
+
+        /* Scroll Section */
+        .scroll-section {
+            height: 100vh;
+            background: #f8f9fa;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .scroll-container {
+            height: 100%;
+            position: relative;
+        }
+
+        .scroll-slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.5s ease-in-out;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .scroll-slide.active {
+            transform: translateX(0);
+        }
+
+        .scroll-slide:not(.active) {
+            transform: translateX(100%);
+        }
+
+        .slide-content {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 3rem;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 600px;
+        }
+
+        .slide-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .slide-content p {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .scroll-navigation {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 100;
+        }
+
+        .scroll-nav-btn {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .scroll-nav-btn.active {
+            background: white;
+        }
+
+        /* Strategic Verticals Section */
+        .strategic-section {
+            padding: 5rem 5%;
+            background: #f0f2f5;
+        }
+
+        .strategic-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .strategic-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2c3e50;
+        }
+
+        .strategic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .strategic-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .strategic-item h3 {
+            color: #27ae60;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Vision Section */
+        .vision-section {
+            padding: 5rem 5%;
+            background: linear-gradient(135deg, #f8d7da, #f1c2cc);
+        }
+
+        .vision-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .vision-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #721c24;
+        }
+
+        .vision-text {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #495057;
+        }
+
+        .philosophy-box {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+
+        /* Milestones Section */
+        .milestones-section {
+            padding: 5rem 5%;
+            background: linear-gradient(135deg, #c85a61, #a84d54);
+            color: white;
+        }
+
+        .milestones-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .milestones-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .milestone-chart {
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        /* Participation Section */
+        .participation-section {
+            padding: 5rem 5%;
+            background: linear-gradient(135deg, #8b5a3c, #6d4c41);
+            color: white;
+        }
+
+        .participation-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .participation-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .partner-logo {
+            background: rgba(255, 255, 255, 0.1);
+            height: 100px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ccc;
+        }
+
+        /* Footer */
+        .footer {
+            background: #6d4c41;
+            color: white;
+            padding: 3rem 5%;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-info {
+            margin: 1rem 0;
+        }
+
+        .footer-info p {
+            margin: 0.5rem 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 2rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-image {
+                margin-left: 0;
+                margin-top: 2rem;
+                height: 300px;
+            }
+
+            .strategic-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .partners-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Complete Transformation of Mind, Body and Soul</h1>
+            <p class="hero-tagline">Life because Quietly</p>
+        </div>
+        <div class="hero-image">
+            <span>[Hero Image Placeholder]</span>
+        </div>
+    </section>
+
+    <!-- Scrolling Section -->
+    <section class="scroll-section">
+        <div class="scroll-container">
+            <div class="scroll-slide active" style="background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100\" height=\"100\" viewBox=\"0 0 100 100\"><rect width=\"100\" height=\"100\" fill=\"%23228B22\"/></svg>');">
+                <div class="slide-content">
+                    <h2>O2 PURODHYAAN</h2>
+                    <p>Large scale Farming & Forestry</p>
+                </div>
+            </div>
+            <div class="scroll-slide" style="background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100\" height=\"100\" viewBox=\"0 0 100 100\"><rect width=\"100\" height=\"100\" fill=\"%234169E1\"/></svg>');">
+                <div class="slide-content">
+                    <h2>O2 SELF & HELP</h2>
+                    <p>Social programs and Tribal Welfare</p>
+                </div>
+            </div>
+            <div class="scroll-slide" style="background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100\" height=\"100\" viewBox=\"0 0 100 100\"><rect width=\"100\" height=\"100\" fill=\"%23FFD700\"/></svg>');">
+                <div class="slide-content">
+                    <h2>O2 UDHYAM</h2>
+                    <p>Industrial Park</p>
+                    <p>Green Sustainable energy</p>
+                </div>
+            </div>
+            <div class="scroll-slide" style="background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100\" height=\"100\" viewBox=\"0 0 100 100\"><rect width=\"100\" height=\"100\" fill=\"%2332CD32\"/></svg>');">
+                <div class="slide-content">
+                    <h2>O2 Mantraa</h2>
+                    <p>Expert global Agri-Consultancy & The Natural Habitat</p>
+                </div>
+            </div>
+            <div class="scroll-slide" style="background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100\" height=\"100\" viewBox=\"0 0 100 100\"><rect width=\"100\" height=\"100\" fill=\"%23FF6347\"/></svg>');">
+                <div class="slide-content">
+                    <h2>OUR STRATEGIC VERTICALS</h2>
+                    <p>Economic Transformations</p>
+                    <p>Social Transformations</p>
+                    <p>Spiritual & Wellness Retreat</p>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-navigation">
+            <button class="scroll-nav-btn active" data-slide="0"></button>
+            <button class="scroll-nav-btn" data-slide="1"></button>
+            <button class="scroll-nav-btn" data-slide="2"></button>
+            <button class="scroll-nav-btn" data-slide="3"></button>
+            <button class="scroll-nav-btn" data-slide="4"></button>
+        </div>
+    </section>
+
+    <!-- Strategic Verticals Section -->
+    <section class="strategic-section">
+        <div class="strategic-content">
+            <h2 class="strategic-title">LTR</h2>
+            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 3rem;">
+                LTR aims as a Rehabilitation to Motivate, 
+                Sell-Sustainable Development & Ecotivity 
+                to Elevate Ecological Existence.
+                Mindfulness and Compassion as living process 
+                to attain enlightenment.
+            </p>
+            <div class="strategic-grid">
+                <div class="strategic-item">
+                    <h3>Impact Area</h3>
+                    <div style="height: 150px; background: #e8f5e8; margin: 1rem 0; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #666;">
+                        [Impact Area Image]
+                    </div>
+                </div>
+                <div class="strategic-item">
+                    <h3>Economic Transformations</h3>
+                    <div style="height: 150px; background: #e8f5e8; margin: 1rem 0; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #666;">
+                        [Economic Image]
+                    </div>
+                </div>
+                <div class="strategic-item">
+                    <h3>Social Transformations</h3>
+                    <div style="height: 150px; background: #e8f5e8; margin: 1rem 0; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #666;">
+                        [Social Image]
+                    </div>
+                </div>
+                <div class="strategic-item">
+                    <h3>Spiritual & Wellness Retreat</h3>
+                    <div style="height: 150px; background: #e8f5e8; margin: 1rem 0; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #666;">
+                        [Spiritual Image]
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision Section -->
+    <section class="vision-section">
+        <div class="vision-content">
+            <h2>VISION AND DRIVING PHILOSOPHY</h2>
+            <p class="vision-text">
+                Building economically and socially sustainable rural models in harmony with nature, while restoring ecological balance and empowering rural communities.
+            </p>
+            <div class="philosophy-box">
+                <h3 style="color: #721c24; margin-bottom: 1rem;">Our Driving Philosophy → S2E2</h3>
+                <p style="color: #495057;">
+                    Self Sustainable Environment & Economy<br>
+                    Creating resilient ecosystems where natural resources regenerate themselves and communities prosper without dependency.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Milestones Section -->
+    <section class="milestones-section">
+        <div class="milestones-content">
+            <h2>Milestones of O2 Priyaddha</h2>
+            <div class="milestone-chart">
+                <svg width="600" height="150" viewBox="0 0 600 150">
+                    <!-- Mountain-like chart -->
+                    <path d="M50,120 L100,80 L150,100 L200,60 L250,90 L300,40 L350,70 L400,50 L450,80 L500,60 L550,90" 
+                          stroke="white" stroke-width="3" fill="none"/>
+                    <!-- Data points -->
+                    <circle cx="100" cy="80" r="4" fill="white"/>
+                    <circle cx="200" cy="60" r="4" fill="white"/>
+                    <circle cx="300" cy="40" r="4" fill="white"/>
+                    <circle cx="400" cy="50" r="4" fill="white"/>
+                    <circle cx="500" cy="60" r="4" fill="white"/>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Strategic Participation Section -->
+    <section class="participation-section">
+        <div class="participation-content">
+            <h2>OUR STRATEGIC PARTICIPATION</h2>
+            <div class="partners-grid">
+                <div class="partner-logo">[DRDO Logo]</div>
+                <div class="partner-logo">[ISRO Logo]</div>
+                <div class="partner-logo">[Govt Logo]</div>
+                <div class="partner-logo">[JMC Logo]</div>
+                <div class="partner-logo">[Partner Logo]</div>
+                <div class="partner-logo">[AAMLDAN Logo]</div>
+                <div class="partner-logo">[QuickCompany Logo]</div>
+                <div class="partner-logo">[Partner Logo]</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <h3>O2 Park & Structures Private Limited</h3>
+            <div class="footer-info">
+                <p>🏢 Office Address</p>
+                <p>Madhya Pradesh 451551</p>
+                <p>India</p>
+                <p>Contact Details</p>
+                <p>📞 9301898522</p>
+                <p>📧 8827788522</p>
+                <p>🌐 Website: www.o2priyaddha.com</p>
+                <p>📧 Email</p>
+            </div>
+            <p style="margin-top: 2rem; font-size: 0.9rem; opacity: 0.8;">
+                © All rights reserved to O2Priyaddha
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll Section Auto-play and Navigation
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.scroll-slide');
+        const navBtns = document.querySelectorAll('.scroll-nav-btn');
+        const totalSlides = slides.length;
+        let autoScrollTimer;
+
+        function showSlide(index) {
+            // Remove active class from all slides and nav buttons
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                navBtns[i].classList.remove('active');
+            });
+
+            // Add active class to current slide and nav button
+            slides[index].classList.add('active');
+            navBtns[index].classList.add('active');
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        function startAutoScroll() {
+            autoScrollTimer = setInterval(nextSlide, 7000); // 7 seconds
+        }
+
+        function stopAutoScroll() {
+            clearInterval(autoScrollTimer);
+        }
+
+        // Navigation button click handlers
+        navBtns.forEach((btn, index) => {
+            btn.addEventListener('click', () => {
+                currentSlide = index;
+                showSlide(currentSlide);
+                stopAutoScroll();
+                startAutoScroll(); // Restart timer
+            });
+        });
+
+        // Start auto-scroll when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            startAutoScroll();
+        });
+
+        // Pause auto-scroll when user hovers over the section
+        const scrollSection = document.querySelector('.scroll-section');
+        scrollSection.addEventListener('mouseenter', stopAutoScroll);
+        scrollSection.addEventListener('mouseleave', startAutoScroll);
+
+        // Smooth scrolling for navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add smooth scroll behavior
+            document.documentElement.style.scrollBehavior = 'smooth';
+        });
+    </script>
+</body>
+</html>

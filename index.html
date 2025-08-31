@@ -1,12 +1,825 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>O2 Park Landing Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O2 Park Landing Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, #2c5530, #4a7c59);
+            position: relative;
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+            color: white;
+            text-align: left;
+            padding: 50px;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+            margin-top: 80px;
+        }
+
+        .hero-logo {
+            width: 200px;
+            height: auto;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+
+        /* Fixed Logo */
+        .fixed-logo {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            width: 80px;
+            height: auto;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        .fixed-logo.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        /* Scroller Section */
+        .scroller-section {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .scroller-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .scroller-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .scroller-slide.active {
+            opacity: 1;
+        }
+
+        .scroller-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slide-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            background: rgba(0,0,0,0.6);
+            padding: 40px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .slide-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .slide-content p {
+            font-size: 1.2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .scroller-nav {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 10;
+        }
+
+        .scroller-btn {
+            width: 50px;
+            height: 50px;
+            border: none;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .scroller-btn:hover {
+            background: rgba(255,255,255,0.4);
+            transform: scale(1.1);
+        }
+
+        .scroller-indicators {
+            position: absolute;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator.active {
+            background: white;
+            transform: scale(1.2);
+        }
+
+        /* Strategic Section */
+        .strategic-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            text-align: center;
+        }
+
+        .strategic-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .strategic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .strategic-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .strategic-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .strategic-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .strategic-card h3 {
+            font-size: 1.5rem;
+            color: #2c5530;
+            margin-bottom: 15px;
+        }
+
+        .strategic-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Vision Section */
+        .vision-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #fdf2e9, #fce4ec);
+            text-align: center;
+        }
+
+        .vision-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .vision-section h2 {
+            font-size: 2.5rem;
+            color: #2c5530;
+            margin-bottom: 30px;
+        }
+
+        .vision-section p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .philosophy-box {
+            background: rgba(44, 85, 48, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
+            border-left: 5px solid #2c5530;
+        }
+
+        /* Milestones Section */
+        .milestones-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #d4a574, #c49464);
+            color: white;
+            text-align: center;
+        }
+
+        .milestones-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .milestones-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .mountain-chart {
+            height: 300px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 20px;
+            margin: 50px 0;
+        }
+
+        .mountain-peak {
+            width: 0;
+            height: 0;
+            border-style: solid;
+            position: relative;
+            animation: growPeak 2s ease-out;
+        }
+
+        .peak1 {
+            border-left: 30px solid transparent;
+            border-right: 30px solid transparent;
+            border-bottom: 80px solid rgba(255,255,255,0.3);
+        }
+
+        .peak2 {
+            border-left: 40px solid transparent;
+            border-right: 40px solid transparent;
+            border-bottom: 120px solid rgba(255,255,255,0.5);
+        }
+
+        .peak3 {
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            border-bottom: 160px solid rgba(255,255,255,0.7);
+        }
+
+        .peak4 {
+            border-left: 40px solid transparent;
+            border-right: 40px solid transparent;
+            border-bottom: 100px solid rgba(255,255,255,0.4);
+        }
+
+        .peak5 {
+            border-left: 35px solid transparent;
+            border-right: 35px solid transparent;
+            border-bottom: 90px solid rgba(255,255,255,0.3);
+        }
+
+        @keyframes growPeak {
+            from { transform: scaleY(0); }
+            to { transform: scaleY(1); }
+        }
+
+        /* Partners Section */
+        .partners-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #8b4d4d, #a05757);
+            color: white;
+            text-align: center;
+        }
+
+        .partners-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .partners-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 30px;
+            align-items: center;
+        }
+
+        .partner-logo {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .partner-logo:hover {
+            transform: scale(1.05);
+            background: rgba(255,255,255,0.2);
+        }
+
+        .partner-logo img {
+            width: 100%;
+            height: 80px;
+            object-fit: contain;
+            /* filter: brightness(0) invert(1); */
+        }
+
+        /* Footer */
+        .footer {
+            background: #2c1810;
+            color: white;
+            padding: 50px 20px 30px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-info {
+            margin-bottom: 30px;
+        }
+
+        .footer-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #d4a574;
+        }
+
+        .footer-info p {
+            margin-bottom: 10px;
+            color: #ccc;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #444;
+            padding-top: 20px;
+            color: #999;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero {
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                padding: 20px;
+            }
+
+            .hero-content {
+                margin-top: 0;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .slide-content {
+                padding: 20px;
+            }
+
+            .slide-content h2 {
+                font-size: 2rem;
+            }
+
+            .strategic-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .partners-grid {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 20px;
+            }
+
+            .fixed-logo {
+                top: 10px;
+                left: 10px;
+                width: 60px;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Section transitions */
+        section {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.6s ease;
+        }
+
+        /* Button styles */
+        .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .cta-button:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+    </style>
 </head>
+
 <body>
-  <div id="root"></div>
-  <script type="module" src="/src/main.jsx"></script>
+    <!-- Hero Section -->
+    <section class="hero">
+        <img src="images/hero-background.jpg" alt="Hero Background" class="hero-bg">
+        <div class="hero-content">
+            <img src="images/o2ParkLogo.png" alt="O2 Park Logo" class="hero-logo">
+            <h1>घर से अंतर्राष्ट्रीय स्तर तक</h1>
+        </div>
+    </section>
+
+    <!-- Fixed Logo (appears after scrolling) -->
+    <img src="images/o2ParkLogo.png" alt="O2 Park Logo" class="fixed-logo" id="fixedLogo">
+
+    <!-- Scroller Section -->
+    <section id="scroller" class="scroller-section">
+        <div class="scroller-container">
+            <!-- Slide 1: O2 PURODHYAAN -->
+            <div class="scroller-slide active">
+                <img src="images/slide1-purodhyaan.png" alt="O2 Purodhyaan">
+                <div class="slide-content">
+                    <h2>O2 PURODHYAAN</h2>
+                    <p>Large scale Farming & Forestry<br>Ecological Restoration</p>
+                </div>
+            </div>
+
+            <!-- Slide 2: O2 SELF & HELP -->
+            <div class="scroller-slide">
+                <img src="images/slide2-self-help.png" alt="O2 Self & Help">
+                <div class="slide-content">
+                    <h2>O2 SELF & HELP</h2>
+                    <p>Social programs and<br>Tribal Welfare</p>
+                </div>
+            </div>
+
+            <!-- Slide 3: O2 UDHYAM -->
+            <div class="scroller-slide">
+                <img src="images/slide3-udhyam.png" alt="O2 Udhyam">
+                <div class="slide-content">
+                    <h2>O2 UDHYAM</h2>
+                    <p>Industrial Park<br>Green Sustainable energy</p>
+                </div>
+            </div>
+
+            <!-- Slide 4: O2 Mantraa -->
+            <div class="scroller-slide">
+                <img src="images/slide4-mantraa.png" alt="O2 Mantraa">
+                <div class="slide-content">
+                    <h2>O2 Mantraa</h2>
+                    <p>Expert global Agri-Consultancy<br>& The Natural Habitat</p>
+                </div>
+            </div>
+
+            <!-- Slide 5: O2 Mission -->
+            <div class="scroller-slide">
+                <img src="images/slide5-mission.png" alt="O2 Mission">
+                <div class="slide-content">
+                    <h2>Our Mission</h2>
+                    <p>Complete transformation through<br>sustainable development</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Controls -->
+        <div class="scroller-nav">
+            <button class="scroller-btn" onclick="previousSlide()">❮</button>
+            <button class="scroller-btn" onclick="nextSlide()">❯</button>
+        </div>
+
+        <!-- Indicators -->
+        <div class="scroller-indicators">
+            <div class="indicator active" onclick="goToSlide(0)"></div>
+            <div class="indicator" onclick="goToSlide(1)"></div>
+            <div class="indicator" onclick="goToSlide(2)"></div>
+            <div class="indicator" onclick="goToSlide(3)"></div>
+            <div class="indicator" onclick="goToSlide(4)"></div>
+        </div>
+    </section>
+
+    <!-- Strategic Section -->
+    <section class="strategic-section">
+        <div class="strategic-content">
+            <h2>OUR STRATEGIC VERTICALS</h2>
+            <p>Integrated approach to sustainable development and environmental restoration</p>
+
+            <div class="strategic-grid">
+                <div class="strategic-card">
+                    <img src="images/strategic-impact.jpg" alt="Impact Area">
+                    <h3>Impact Area</h3>
+                    <p>Focused interventions in key ecological zones for maximum environmental and social impact</p>
+                </div>
+
+                <div class="strategic-card">
+                    <img src="images/strategic-economic.png" alt="Economic Transformation">
+                    <h3>Economic Transformations</h3>
+                    <p>Sustainable economic models that benefit local communities while preserving natural resources</p>
+                </div>
+
+                <div class="strategic-card">
+                    <img src="images/strategic-social.jpg" alt="Social Transformation">
+                    <h3>Social Transformations</h3>
+                    <p>Empowering communities through education, healthcare, and capacity building programs</p>
+                </div>
+
+                <div class="strategic-card">
+                    <img src="images/strategic-wellness.png" alt="Wellness Retreat">
+                    <h3>Spiritual & Wellness Retreat</h3>
+                    <p>Holistic wellness programs that nurture mind, body, and soul in natural settings</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision Section -->
+    <section class="vision-section">
+        <div class="vision-content">
+            <h2>VISION AND DRIVING PHILOSOPHY</h2>
+            <p>To foster development and implement sustainable models in harmony with nature, while restoring ecological
+                balance and empowering rural communities.</p>
+
+            <div class="philosophy-box">
+                <h3>Our Driving Philosophy - S2E2</h3>
+                <p><strong>Self Sustainable Environment & Economy:</strong> Creating systems where natural resources
+                    regenerate themselves and communities prosper without dependency.</p>
+                <p>We believe in the power of integrated development that respects traditional wisdom while embracing
+                    innovative solutions for a sustainable future.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Milestones Section -->
+    <section class="milestones-section">
+        <div class="milestones-content">
+            <h2>Milestones of O2 My Adda</h2>
+            <p>Tracking our journey towards sustainable transformation</p>
+
+            <div class="mountain-chart">
+                <div class="mountain-peak peak1"></div>
+                <div class="mountain-peak peak2"></div>
+                <div class="mountain-peak peak3"></div>
+                <div class="mountain-peak peak4"></div>
+                <div class="mountain-peak peak5"></div>
+            </div>
+
+            <p>Each peak represents a milestone in our journey towards complete ecological and social transformation.
+            </p>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section class="partners-section">
+        <div class="partners-content">
+            <h2>OUR STRATEGIC PARTICIPATION</h2>
+            <p>Collaborating with leading organizations for sustainable impact</p>
+
+            <div class="partners-grid">
+                <div class="partner-logo">
+                    <img src="images/partner-logo1.png" alt="Partner 1">
+                </div>
+                <div class="partner-logo">
+                    <img src="images/partner-logo2.png" alt="Partner 2">
+                </div>
+                <div class="partner-logo">
+                    <img src="images/partner-logo3.png" alt="Partner 3">
+                </div>
+                <div class="partner-logo">
+                    <img src="images/partner-logo4.png" alt="Partner 4">
+                </div>
+                <div class="partner-logo">
+                    <img src="images/partner-logo5.png" alt="Partner 5">
+                </div>
+                <div class="partner-logo">
+                    <img src="images/partner-logo6.png" alt="Partner 6">
+                </div>
+                <div class="partner-logo">
+                    <img src="images/partner-logo7.png" alt="Partner 7">
+                </div>
+                <div class="partner-logo">
+                    <img src="images/partner-logo8.png" alt="Partner 8">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                <h3>O2 Park & Ventures Private Limited</h3>
+                <p>Talun, Barwani</p>
+                <p>Madhya Pradesh 451551</p>
+                <p>India</p>
+                <p>Contact:</p>
+                <p>9081039222</p>
+                <p>8827738222</p>
+                <p>Email: contact@o2myadda.com</p>
+                <p>Website: www.o2myadda.com</p>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© All rights reserved to O2MyAdda</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroller functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.scroller-slide');
+        const indicators = document.querySelectorAll('.indicator');
+        let autoSlideInterval;
+
+        function showSlide(index) {
+            // Remove active class from all slides and indicators
+            slides.forEach(slide => slide.classList.remove('active'));
+            indicators.forEach(indicator => indicator.classList.remove('active'));
+
+            // Add active class to current slide and indicator
+            slides[index].classList.add('active');
+            indicators[index].classList.add('active');
+
+            currentSlide = index;
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+            resetAutoSlide();
+        }
+
+        function previousSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+            resetAutoSlide();
+        }
+
+        function goToSlide(index) {
+            showSlide(index);
+            resetAutoSlide();
+        }
+
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(() => {
+                nextSlide();
+            }, 7000); // 7 seconds
+        }
+
+        function resetAutoSlide() {
+            clearInterval(autoSlideInterval);
+            startAutoSlide();
+        }
+
+        // Initialize auto-slide
+        startAutoSlide();
+
+        // Pause auto-slide when user hovers over scroller section
+        const scrollerSection = document.querySelector('.scroller-section');
+        scrollerSection.addEventListener('mouseenter', () => {
+            clearInterval(autoSlideInterval);
+        });
+
+        scrollerSection.addEventListener('mouseleave', () => {
+            startAutoSlide();
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll animations
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.strategic-card, .vision-content, .milestones-content');
+
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        }
+
+        // Initialize scroll animations
+        window.addEventListener('scroll', animateOnScroll);
+        animateOnScroll(); // Run once on load
+
+        // Fixed logo visibility on scroll
+        window.addEventListener('scroll', function() {
+            const fixedLogo = document.getElementById('fixedLogo');
+            const heroHeight = document.querySelector('.hero').offsetHeight;
+            
+            if (window.scrollY > heroHeight * 0.5) {
+                fixedLogo.classList.add('visible');
+            } else {
+                fixedLogo.classList.remove('visible');
+            }
+        });
+    </script>
 </body>
+
 </html>
