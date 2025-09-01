@@ -5,6 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>O2 Park Landing Page</title>
+    <!-- Add jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.7.1/slick.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.7.1/slick.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800">
+
     <style>
         * {
             margin: 0;
@@ -77,13 +83,13 @@
             font-size: 3.5rem;
             font-weight: bold;
             margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
 
         .hero p {
             font-size: 1.5rem;
             margin-bottom: 30px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         }
 
         /* Scroller Section */
@@ -126,7 +132,7 @@
             transform: translate(-50%, -50%);
             text-align: center;
             color: white;
-            background: rgba(0,0,0,0.6);
+            background: rgba(0, 0, 0, 0.6);
             padding: 40px;
             border-radius: 10px;
             backdrop-filter: blur(10px);
@@ -135,12 +141,12 @@
         .slide-content h2 {
             font-size: 2.5rem;
             margin-bottom: 15px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
 
         .slide-content p {
             font-size: 1.2rem;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         }
 
         .scroller-nav {
@@ -158,7 +164,7 @@
             height: 50px;
             border: none;
             border-radius: 50%;
-            background: rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.2);
             color: white;
             cursor: pointer;
             display: flex;
@@ -170,7 +176,7 @@
         }
 
         .scroller-btn:hover {
-            background: rgba(255,255,255,0.4);
+            background: rgba(255, 255, 255, 0.4);
             transform: scale(1.1);
         }
 
@@ -188,7 +194,7 @@
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background: rgba(255,255,255,0.4);
+            background: rgba(255, 255, 255, 0.4);
             cursor: pointer;
             transition: all 0.3s ease;
         }
@@ -221,7 +227,7 @@
             background: white;
             padding: 30px;
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
         }
 
@@ -282,74 +288,195 @@
         }
 
         /* Milestones Section */
-        .milestones-section {
-            padding: 80px 20px;
-            background: linear-gradient(135deg, #d4a574, #c49464);
-            color: white;
-            text-align: center;
-        }
 
-        .milestones-content {
-            max-width: 1000px;
-            margin: 0 auto;
+        .milestones-section * {
+            box-sizing: border-box;
         }
 
         .milestones-section h2 {
             font-size: 2.5rem;
             margin-bottom: 50px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
-        .mountain-chart {
-            height: 300px;
+        .milestones-section .container {
+            height: 100%;
+            background-color: #003471;
             display: flex;
-            align-items: flex-end;
             justify-content: center;
-            gap: 20px;
-            margin: 50px 0;
+            align-items: center;
+            flex-direction: column;
         }
 
-        .mountain-peak {
-            width: 0;
-            height: 0;
-            border-style: solid;
+        .title {
+            font-size: 38px;
+            color: #fff;
+            font-weight: 300;
+        }
+
+        .timeline {
+            width: 100%;
             position: relative;
-            animation: growPeak 2s ease-out;
+            margin-top: 100px;
         }
 
-        .peak1 {
-            border-left: 30px solid transparent;
-            border-right: 30px solid transparent;
-            border-bottom: 80px solid rgba(255,255,255,0.3);
+        .timeline-nav__item {
+            width: auto;
+            height: auto;
+            text-align: center;
+            opacity: 0.5;
+            background: transparent;
+            color: #afc9f6;
+            margin: 15px 25px !important;
+            position: relative;
+            font-size: 14px;
+            line-height: 28px;
+            font-weight: 400;
+            outline: none;
+            cursor: pointer;
         }
 
-        .peak2 {
-            border-left: 40px solid transparent;
-            border-right: 40px solid transparent;
-            border-bottom: 120px solid rgba(255,255,255,0.5);
+        .timeline-nav__item::before {
+            content: "";
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 10px;
+            height: 10px;
+            border-radius: 100%;
+            background-color: #afc9f6;
+            transition: 0.2s;
         }
 
-        .peak3 {
-            border-left: 50px solid transparent;
-            border-right: 50px solid transparent;
-            border-bottom: 160px solid rgba(255,255,255,0.7);
+        .timeline-nav__item.slick-current {
+            color: #25de25;
+            opacity: 1;
         }
 
-        .peak4 {
-            border-left: 40px solid transparent;
-            border-right: 40px solid transparent;
-            border-bottom: 100px solid rgba(255,255,255,0.4);
+        .timeline-nav__item.slick-current::before {
+            background-color: #25de25;
         }
 
-        .peak5 {
-            border-left: 35px solid transparent;
-            border-right: 35px solid transparent;
-            border-bottom: 90px solid rgba(255,255,255,0.3);
+        .timeline-wrapper {
+            position: relative;
+            width: 100%;
+            height: 580px;
+            margin: 60px auto;
+        }
+
+        @media (max-width: 500px) {
+            .timeline-wrapper {
+                height: 1000px;
+                max-height: 900px;
+            }
+        }
+
+        .timeline-slider {
+            height: 100%;
+        }
+
+        .timeline .slick-list {
+            height: 100%;
+        }
+
+        @media (min-width: 1080px) {
+            .timeline .slick-list {
+                padding: 0 180px !important;
+            }
+        }
+
+        .timeline .slick-track {
+            height: 100%;
+        }
+
+        .timeline-slide {
+            position: relative;
+            overflow: hidden;
+            background-repeat: no-repeat;
+            outline: none;
+            background-size: auto 400px, cover;
+            background-position: top;
+            margin: 0 24px;
+            width: 80%;
+            z-index: 1;
+        }
+
+        .timeline-slide:after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 52, 113, 0.8);
+            z-index: 2;
+        }
+
+        .timeline-slide__content {
+            z-index: 5;
+            position: absolute;
+            top: 220px;
+            background: #ffffff;
+            width: 80%;
+            left: 50%;
+            transform: translate(-50%, 0px);
+            padding: 40px;
+            opacity: 0;
+            transition: opacity 1s;
+        }
+
+        @media (max-width: 500px) {
+            .timeline-slide__content {
+                width: 100%;
+            }
+        }
+
+        .timeline-year {
+            z-index: 5;
+            font-size: 35px;
+            color: #ffffff;
+            background: #25de25;
+            padding: 15px 26px;
+            transition: opacity 1.2s;
+            position: absolute;
+            right: 0;
+            opacity: 0;
+        }
+
+        .timeline-title {
+            color: #25de25;
+            font-size: 26px;
+            line-height: 30px;
+            font-weight: 400;
+        }
+
+        .timeline-text {
+            font-size: 18px;
+            line-height: 28px;
+            color: #666666;
+        }
+
+        .timeline .slick-current:after {
+            background-color: rgba(0, 52, 113, 0);
+        }
+
+        .timeline .slick-current .timeline-year {
+            opacity: 1;
+        }
+
+        .timeline .slick-current .timeline-slide__content {
+            opacity: 1;
         }
 
         @keyframes growPeak {
-            from { transform: scaleY(0); }
-            to { transform: scaleY(1); }
+            from {
+                transform: scaleY(0);
+            }
+
+            to {
+                transform: scaleY(1);
+            }
         }
 
         /* Partners Section */
@@ -368,7 +495,7 @@
         .partners-section h2 {
             font-size: 2.5rem;
             margin-bottom: 50px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .partners-grid {
@@ -379,7 +506,7 @@
         }
 
         .partner-logo {
-            background: rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.1);
             padding: 20px;
             border-radius: 10px;
             transition: transform 0.3s ease;
@@ -388,7 +515,7 @@
 
         .partner-logo:hover {
             transform: scale(1.05);
-            background: rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.2);
         }
 
         .partner-logo img {
@@ -506,7 +633,7 @@
         .cta-button:hover {
             background: #45a049;
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
     </style>
 </head>
@@ -642,20 +769,128 @@
 
     <!-- Milestones Section -->
     <section class="milestones-section">
-        <div class="milestones-content">
-            <h2>Milestones of O2 My Adda</h2>
-            <p>Tracking our journey towards sustainable transformation</p>
+        <div class="container">
+            <h2 class="title">Our Milestones</h2>
+            <div class="timeline">
+                <div class="timeline-nav">
+                    <div class="timeline-nav__item">2006</div>
+                    <div class="timeline-nav__item">2010</div>
+                    <div class="timeline-nav__item">2015</div>
+                    <div class="timeline-nav__item">2016</div>
+                    <div class="timeline-nav__item">2017</div>
+                    <div class="timeline-nav__item">2019</div>
+                    <div class="timeline-nav__item">2021</div>
+                    <div class="timeline-nav__item">2021</div>
+                    <div class="timeline-nav__item">2022</div>
+                    <div class="timeline-nav__item">2023</div>
+                </div>
+                <div class="timeline-wrapper">
+                    <div class="timeline-slider">
+                        <div class="timeline-slide" style="background-image: url(https://unsplash.it/1920/600?image=11)"
+                            data-year="2006"> <span class="timeline-year">2006</span>
+                            <div class="timeline-slide__content">
+                                <h4 class="timeline-title">Kisan Pathshala</h4>
+                                <p class="timeline-text">Kisan Paathshala - "Learn and Teach Here"</p>
+                            </div>
+                        </div>
+                        <div class="timeline-slide" style="background-image: url(https://unsplash.it/1920/600?image=12)"
+                            data-year="2010"> <span class="timeline-year">2010</span>
+                            <div class="timeline-slide__content">
+                                <h4 class="timeline-title">BKisan Trader</h4>
+                                <p class="timeline-text">BKisan Trader - "किसान ख़र्च आधा और उत्पादन ज़्यादा"</p>
+                            </div>
+                        </div>
+                        <div class="timeline-slide" style="background-image: url(https://unsplash.it/1920/600?image=13)"
+                            data-year="2015"> <span class="timeline-year">2015</span>
+                            <div class="timeline-slide__content">
+                                <h4 class="timeline-title">Tissue Culture Lab</h4>
+                                <p class="timeline-text">Tissue Culture Lab - "Top Quality Plants with R&D"</p>
+                            </div>
+                        </div>
+                        <div class="timeline-slide" style="background-image: url(https://unsplash.it/1920/600?image=13)"
+                            data-year="2016"> <span class="timeline-year">2016</span>
+                            <div class="timeline-slide__content">
+                                <h4 class="timeline-title">Member in National Bamboo Mission</h4>
+                                <p class="timeline-text">Member in National Bamboo Mission - "Promoting Bamboo
+                                    Cultivation and Industry"
+                                </p>
+                            </div>
+                        </div>
+                        <div class="timeline-slide" style="background-image: url(https://unsplash.it/1920/600?image=13)"
+                            data-year="2017"> <span class="timeline-year">2017</span>
+                            <div class="timeline-slide__content">
+                                <h4 class="timeline-title">Farmkart</h4>
+                                <p class="timeline-text">Farmkart - "Connecting Farmers with Markets"
+                                    Mentioned by PM Modi in his Mann Ki Baat.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="timeline-slide" style="background-image: url(https://unsplash.it/1920/600?image=13)"
+                            data-year="2019"> <span class="timeline-year">2019</span>
+                            <div class="timeline-slide__content">
+                                <h4 class="timeline-title">BKisan Smart Farming Pvt Ltd</h4>
+                                <p class="timeline-text">BKisan Smart Farming Pvt Ltd - Increase in Banana Export.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="timeline-slide" style="background-image: url(https://unsplash.it/1920/600?image=13)"
+                            data-year="2021"> <span class="timeline-year">2021</span>
+                            <div class="timeline-slide__content">
+                                <h4 class="timeline-title">BK Banana </h4>
+                                <p class="timeline-text">Buying and Selling Residue free.
+                                <ul>
+                                    <li>Revolution in Banana Production in North India.</li>
+                                    <li>Pioneer in Export from UP to Gulf Countries.</li>
+                                </ul>
+                                BKisan Farmer Producer Company (FPC)
+                                </p>
+                            </div>
+                        </div>
+                        <div class="timeline-slide" style="background-image: url(https://unsplash.it/1920/600?image=13)"
+                            data-year="2021"> <span class="timeline-year">2021</span>
+                            <div class="timeline-slide__content">
+                                <h4 class="timeline-title">BKisan Farmer Producer Company (FPC)</h4>
+                                <p class="timeline-text">
 
-            <div class="mountain-chart">
-                <div class="mountain-peak peak1"></div>
-                <div class="mountain-peak peak2"></div>
-                <div class="mountain-peak peak3"></div>
-                <div class="mountain-peak peak4"></div>
-                <div class="mountain-peak peak5"></div>
+                                    BKisan Farmer Producer Company (FPC)
+                                </p>
+                            </div>
+                        </div>
+                        <div class="timeline-slide" style="background-image: url(https://unsplash.it/1920/600?image=13)"
+                            data-year="2022"> <span class="timeline-year">2022</span>
+                            <div class="timeline-slide__content">
+                                <h4 class="timeline-title">O2 Park</h4>
+                                <p class="timeline-text">
+                                <ul>
+                                    <li>Work towards Climate Changes.</li>
+                                    <li>Designing Barren Land.</li>
+                                    <li>De-forestry to Re-forestry.</li>
+                                    <li>Carbon & Water Credit Consultancy</li>
+                                </ul>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="timeline-slide" style="background-image: url(https://unsplash.it/1920/600?image=13)"
+                            data-year="2023"> <span class="timeline-year">2023</span>
+                            <div class="timeline-slide__content">
+                                <h4 class="timeline-title">BKisan & Aurick Initiatives</h4>
+                                <p class="timeline-text">BKisan & Aurick Initiatives - Farm to Plate Banana Farming.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="timeline-slide" style="background-image: url(https://unsplash.it/1920/600?image=13)"
+                            data-year="2016"> <span class="timeline-year">2016</span>
+                            <div class="timeline-slide__content">
+                                <h4 class="timeline-title">Our nice super title</h4>
+                                <p class="timeline-text">Lorem ipsum dolor site amet, consectetur adipscing elit, sed do
+                                    eisumod tempor incididut ut labore et dolore magna aliqua. Ut enim ad mimim venjam,
+                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            <p>Each peak represents a milestone in our journey towards complete ecological and social transformation.
-            </p>
         </div>
     </section>
 
@@ -809,15 +1044,70 @@
         animateOnScroll(); // Run once on load
 
         // Fixed logo visibility on scroll
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function () {
             const fixedLogo = document.getElementById('fixedLogo');
             const heroHeight = document.querySelector('.hero').offsetHeight;
-            
+
             if (window.scrollY > heroHeight * 0.5) {
                 fixedLogo.classList.add('visible');
             } else {
                 fixedLogo.classList.remove('visible');
             }
+        });
+
+        $(function () {
+            $('.timeline-nav').slick({
+                slidesToShow: 12,
+                slidesToScroll: 1,
+                asNavFor: '.timeline-slider',
+                centerMode: false,
+                focusOnSelect: true,
+                mobileFirst: true,
+                arrows: false,
+                infinite: false,
+                responsive: [
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 8,
+                        }
+                    },
+                    {
+                        breakpoint: 0,
+                        settings: {
+                            slidesToShow: 4,
+                            slidesToScroll: 2,
+                        }
+                    }
+                ]
+            });
+
+            $('.timeline-slider').slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                arrows: false,
+                asNavFor: '.timeline-nav',
+                centerMode: true,
+                cssEase: 'ease',
+                edgeFriction: 0.5,
+                mobileFirst: true,
+                speed: 500,
+                responsive: [
+                    {
+                        breakpoint: 0,
+                        settings: {
+                            centerMode: false
+                        }
+                    },
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            centerMode: true
+                        }
+                    }
+                ]
+            });
+
         });
     </script>
 </body>
